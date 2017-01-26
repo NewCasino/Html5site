@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2014.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                                            
+												win_occurrence: 30, //Win occurrence percentage (100 = always win)
+												casino_cash:100,    //The starting casino cash that is recharged by the money lost by the user
+												player_money: 100,  //Points at the start game     
+												
+												fiches_value: [ 1,  //Value of first fiche
+																5,  //Value of second fiche
+																10, //Value of third fiche
+																25, //Value of fourth fiche
+																100 //Value of fifth fiche                                             
+												],
+												
+												turn_card_speed: 400, //Time speed to completely turn a card (in ms)
+												showtext_timespeed: 3500 // Time speed duration of win/lose text (in ms) 
+                                           });
+                                           
+                                           
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("save_score", function(evt,iScore) {
+                             //alert("iScore: "+iScore);
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="1136" height="640"> </canvas>
+
+    </body>
+</html>

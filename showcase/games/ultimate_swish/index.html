@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/cannon.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                        errorMultiplier: 1000,    //INCREASE/DECREASE (500-1500) THIS VALUE TO INCREASE/DECREASE SHOT DIFFICULTY
+                        timeAvailable: 60000,     //GAME TIME IN MILLISECONDS
+                        selectorSpeed: 15,        //SELECTOR SPEED (DECREASE THIS TO GET A EASIER GAME
+                        point_per_ball : 1,       //POINTS TO ASSIGN WHEN PLAYER SCORES WITH NORMAL BALL
+                        point_per_special_ball: 2 //POINTS TO ASSIGN WHEN PLAYER SCORES WITH SPECIAL BALL
+                     });
+
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("save_score", function(evt,iScore) {
+                             //alert("iScore "+iScore );
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="1024" height="768"> </canvas>
+
+    </body>
+</html>

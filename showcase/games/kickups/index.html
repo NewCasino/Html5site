@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                        // Normal mode parameters:
+                            gravity: 3.5,
+                            ballMass: 1,
+                            friction: 0.75,
+                            edgeFriction: 0.2,
+                            rotationSpeed: 1.25,
+                            horizKickForce: 50,
+                            vertKickForce: 50,
+                            restitutionKickForce: 0.25,
+                        // Challenge mode parameters:
+                            chGravity: 3.5,
+                            chBallMass: 1,
+                            chFriction: 0.75,
+                            chEdgeFriction: 0.2,
+                            chRotationSpeed: 1.25,
+                            chHorizKickForce: 50,
+                            chVertKickForce: 50,
+                            chRestitutionKickForce: 0.25,
+                            chGravityIncrease: 0.05    
+                     });
+
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("new_highscore", function(evt,iHighScore) {
+                             //alert("iHighScore: "+iHighScore );
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="768" height="1024"> </canvas>
+
+    </body>
+</html>

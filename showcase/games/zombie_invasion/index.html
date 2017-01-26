@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2014.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                    var oMain = new CMain({
+						//Sets lifepoints of the player
+						playerlife : 10,
+ 
+						//Sets damage done (in lifepoints) by:
+						damage_zombie_0 : -1, //Zombie0 damage
+						damage_zombie_1 : -1, //Zombie1 damage
+						damage_zombie_2 : -1, //Zombie2 damage
+						damage_zombie_3 : -2, //Zombie3 damage
+						damage_survivor : 1, //Health points given by survivor
+
+						//Sets lifepoint (in number of taps) of:
+						life_zombie_0 : 1, //Zombie0 life
+						life_zombie_1 : 2, //Zombie1 life
+						life_zombie_2 : 3, //Zombie2 life
+						life_zombie_3 : 2, //Zombie3 life
+						life_survivor : 1, //Survivor life
+
+						//Sets score earned by each kill (reverted for survivor):
+						score_zombie_0 : 100, //Zombie0 score
+						score_zombie_1 : 200, //Zombie1 score
+						score_zombie_2 : 400, //Zombie2 score
+						score_zombie_3 : 800, //Zombie3 score
+						score_survivor : -800, //Survivor score
+
+						
+						start_spawn_time : 2000, //Starting time (in ms) spawn of a zombie/survivor (limited to 500)
+						spawn_time_decrease: 50, //Time (in ms) that will subtract to the start_spawn_time each WAVE 
+						stage_start_time: 10000, //Starting time duration (in ms) of a WAVE (not limited)
+						stage_time_increase: 1000, //Time (in ms) that will added at stage_start_time each WAVE
+
+						//Number of simultaneous zombie spawn. This array is ordered by WAVE sequence. It's not limited in number of spawn, nor in number of array elements. Adding more elements, you will add more different WAVES. Subsequent WAVES > of this array length, will use last element forever.  
+						max_spawn_onstages:[1, //WAVE 1
+											2, //WAVE 2
+											2, //WAVE 3
+											2, //WAVE 4
+											2, //WAVE 5
+											2, //WAVE 6
+											2, //WAVE 7
+											2, //WAVE 8
+											2, //WAVE 9
+											3],//WAVE 10 
+
+						//Zombie probability spawn in percentage. The Array is ordered by zombie type. E.g. Index 0 mean zombie0 and so on... If a zombie-type rate is not specified, will have 0 chance of spawn.
+						zombie_rate_onstage_0: [100], //WAVE 1
+						zombie_rate_onstage_1: [80,20], //WAVE2
+                        			zombie_rate_onstage_2: [40,50,10], //WAVE3
+						zombie_rate_onstage_3: [40,40,20], //WAVE4
+						zombie_rate_onstage_4: [35,40,25], //WAVE5
+						zombie_rate_onstage_5: [35,35,25,5], //WAVE6
+						zombie_rate_onstage_6: [20,25,35,20],//WAVE7
+						zombie_rate_onstage_7: [15,20,35,30], //WAVE8
+						//From WAVE 8 occurences are fixed
+
+						survivor_rate_onstages: [0,0,5,10,15,20,25,30] //Survivor probability spawn each stage. Index of array mean WAVE.
+
+                    });
+                                           
+                                           
+                    $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                    });
+
+                    $(oMain).on("save_score", function(evt,iScore) {
+                             //alert("iScore: "+iScore);
+                    });
+
+                    $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                    });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="1136" height="640"> </canvas>
+
+    </body>
+</html>

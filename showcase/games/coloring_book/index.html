@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,minimal-ui" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2014.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                                            
+                                            min_stroke_size: 1,  //MINIMUM STROKE SIZE OF THE PEN
+                                            max_stroke_size: 40, //MAXIMUM STROKE SIZE OF THE PEN
+                                            
+                                            colors: [
+                                                    "#8B4513", //COLOR 1
+                                                    "#800000", //COLOR 2
+                                                    "#FF0000", //COLOR 3
+                                                    "#FF4500", //COLOR 4
+                                                    "#FFA500", //COLOR 5
+                                                    "#ffff00", //COLOR 6
+                                                    "#9ACD32", //COLOR 7
+                                                    "#00FF00", //COLOR 8
+                                                    "#008000", //COLOR 9 
+                                                    "#00FA9A", //COLOR 10
+                                                    "#20B2AA", //COLOR 11
+                                                    "#00FFFF", //COLOR 12   
+                                                    "#00BFFF", //COLOR 13 
+                                                    "#0000FF", //COLOR 14 
+                                                    "#000080", //COLOR 15 
+                                                    "#4B0082", //COLOR 16
+                                                    "#8B008B", //COLOR 17 
+                                                    "#EE82EE", //COLOR 18
+                                                    "#BC8F8F", //COLOR 19
+                                                    "#FFC0CB", //COLOR 20
+                                                    "#FFE4C4", //COLOR 21 
+                                                    "#F5F5F5", //COLOR 22 
+                                                    "#808080", //COLOR 23  
+                                                    "#000000"  //COLOR 24
+                                                
+                                            ]   
+                                            
+                                           });
+                                           
+                                           
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        
+        
+        <canvas id="draw_canvas" class='ani_hack' width="1920" height="1080" style="position:fixed;"> </canvas>
+        <canvas id="canvas" class='ani_hack' width="1920" height="1080"> </canvas>
+        <canvas id="interactivecanvas" class='ani_hack' width="1920" height="1080" style="position:fixed;"> </canvas>
+
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2014.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                var oMain = new CMain({
+										prize0:2.00,     //PRIZE FOR COMBO 1
+										prize1:3.00,     //PRIZE FOR COMBO 2
+										prize2:6.00,     //PRIZE FOR COMBO 2
+										prize3:10.00,    //PRIZE FOR COMBO 3
+										prize4:20.00,    //PRIZE FOR COMBO 4
+										prize5:100.00,   //PRIZE FOR COMBO 5
+										prize6:500.00,   //PRIZE FOR COMBO 6
+										prize7:5000.00,  //PRIZE FOR COMBO 7
+										prize8:60000.00, //PRIZE FOR COMBO 8
+										
+										prizeprob0:30,   //OCCURENCE PERCENTAGE FOR PRIZE 1
+										prizeprob1:22,   //OCCURENCE PERCENTAGE FOR PRIZE 2
+										prizeprob2:17,   //OCCURENCE PERCENTAGE FOR PRIZE 3
+										prizeprob3:10,   //OCCURENCE PERCENTAGE FOR PRIZE 4
+										prizeprob4:8,    //OCCURENCE PERCENTAGE FOR PRIZE 5
+										prizeprob5:6,    //OCCURENCE PERCENTAGE FOR PRIZE 6
+										prizeprob6:4,    //OCCURENCE PERCENTAGE FOR PRIZE 7
+										prizeprob7:2,    //OCCURENCE PERCENTAGE FOR PRIZE 8
+										prizeprob8:1,    //OCCURENCE PERCENTAGE FOR PRIZE 9
+												
+										//winpercentage MANAGES OCCURENCE PERCENTAGE FOR EACH GAME
+										winpercentage:
+													[
+													   50,  //NO WIN
+													   30,  //WIN IN 1 ROW
+													   25,  //WIN IN 2 ROWS
+													   5    //WIN IN 3 ROWS
+												   ],  
+
+										scratch_tolerance_per_cell : 50 //AREA PERCENTAGE TO SCRATCH TO SHOW FINAL RESULT IN THE FRUIT ROW
+                                    });
+                                            
+                                           
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("save_score", function(evt,iScore) {
+                             //alert("iScore: "+iScore);
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="1136" height="640"> </canvas>
+
+
+
+	<canvas id="clear-image" width="342" height="342" style="display:none;position:absolute;"></canvas>
+
+
+    </body>
+</html>

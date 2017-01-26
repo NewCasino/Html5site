@@ -1,0 +1,86 @@
+/* 
+    Document   : main.css
+    Created on : 19-nov-2013, 15.47.44
+    Author     : Biagio Iannuzzi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    background-color: #b6b6b6;
+    background-repeat: repeat-x;
+    background-position: top;
+    background-image: url(../sprites/bg_tile.jpg);    
+}
+
+* {
+    user-select: none;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+}
+
+::selection { background: transparent;color:inherit; }
+::-moz-selection { background: transparent;color:inherit; }
+
+#canvas{
+    width:680px;
+    height: 500px;
+    
+    position: absolute;
+    
+    
+}
+
+canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering:-o-crisp-edges;
+    image-rendering:-webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+	-ms-touch-action: none;
+}
+
+.ani_hack{
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* mobile webkit */
+}
+
+/***************FONTS*******************/
+
+@font-face {
+    font-family: 'BlackChanceryRegular';
+    src: url('blkchcry.eot');
+    src: url('blkchcry.eot') format('embedded-opentype'),
+         url('blkchcry.woff') format('woff'),
+         url('blkchcry.ttf') format('truetype'),
+         url('blkchcry.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Helvetica-Condensed';
+  src: url('Helvetica-Condensed.eot?') format('embedded-opentype'),  url('Helvetica-Condensed.otf')  format('opentype'),
+	     url('Helvetica-Condensed.woff') format('woff'), url('Helvetica-Condensed.ttf')  format('truetype'), url('Helvetica-Condensed.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UniversLightCondensed-Regular';
+  src: url('UniversLightCondensed-Regular.eot?') format('embedded-opentype'),  url('UniversLightCondensed-Regular.woff') format('woff'), url('UniversLightCondensed-Regular.ttf')  format('truetype'), url('UniversLightCondensed-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

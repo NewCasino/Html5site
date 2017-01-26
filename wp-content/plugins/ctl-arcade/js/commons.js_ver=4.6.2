@@ -1,0 +1,427 @@
+/**
+ * Created by codethislab on 20/10/15.
+ */
+
+var g_iTimeAds = 0;
+
+jQuery(window).resize(function(){
+    ctlDlgResize();
+});
+
+function __ctlDlgResizeAttachToBody( oNode ){
+
+    if ( oNode.hasClass("ctl-arcade-dlg-fixed") ){
+        return;
+    }
+
+    oNode.addClass("ctl-arcade-dlg-fixed");
+    oNode = oNode.detach();
+    jQuery("body").append(oNode);
+}
+function __ctlDlgResizeAttachToGameIframe( oNode ){
+
+    if ( !oNode.hasClass("ctl-arcade-dlg-fixed") ){
+        return;
+    }
+
+    oNode.removeClass("ctl-arcade-dlg-fixed");
+    oNode = oNode.detach();
+    jQuery(".ctl-arcade-game-iframe-wrapper").append(oNode);
+}
+
+function ctlDlgResize(){
+    var oNodeAds = jQuery(".ctl-arcade-ads-dlg-wrapper");
+    var oNodeShare = jQuery(".ctl-arcade-share-dlg-wrapper");
+
+    if( jQuery(".ctl-arcade-game-iframe").height() <= 310 ){
+
+        if(oNodeAds){
+            __ctlDlgResizeAttachToBody(oNodeAds);
+        }
+        if(oNodeShare){
+            __ctlDlgResizeAttachToBody(oNodeShare);
+        }
+
+    }else{
+
+        if(oNodeAds){
+            __ctlDlgResizeAttachToGameIframe(oNodeAds);
+        }
+        if(oNodeShare){
+            __ctlDlgResizeAttachToGameIframe(oNodeShare);
+        }
+
+    }
+}
+
+
+function ctlArcadeMakeCode() {
+    var code = "";
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for( var i=0; i < 32; i++ )
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    return code;
+}
+
+function ctlArcadeGetUrlVar( sParam ){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+        }
+    }
+    return null;
+}
+
+function ctlArcadeGetUrlVars( urlVars ) {
+    urlVars = urlVars.trim();
+    var oFinalData = new Array();
+    var hashes = urlVars.split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        var hash = hashes[i].split('=');
+        oFinalData[hash[0]] = hash[1];
+    }
+    return oFinalData;
+}
+
+function ctlArcadeNumberFormat(number, decimals, dec_point, thousands_sep) {
+
+    number = (number + '')
+        .replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function(n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + (Math.round(n * k) / k)
+                    .toFixed(prec);
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
+        .split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '')
+            .length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1)
+            .join('0');
+    }
+    return s.join(dec);
+}
+
+function ctlArcadeCloseDlg( idDlg ){
+    jQuery('#'+idDlg).remove();
+
+}
+
+function ctlArcadeSaveScore( szAjaxMethod, iScore, idUser, szGamePluginDir ){
+    var idLoading = ctlArcadeShowLoading("saving score...");
+
+    jQuery.ajax({
+        url: szAjaxMethod,
+        type: "post",
+        data: { "action" : "save-score",
+            "user_score" : iScore,
+            "user_id" : idUser,
+            "game_plugin_dir"  : szGamePluginDir
+        }
+    }).done(function (data) {
+        ctlArcadeCloseDlg(idLoading);
+        data = ctlArcadeGetUrlVars(data);
+
+        if (data["status"] == "true"){
+            if (typeof ctlArcadeRefreshRank == 'function') {
+                ctlArcadeRefreshRank("refresh");
+            }
+        }else{
+            ctlArcadeShowDialog("Error!","There was an error during save score!",
+                [ { "txt" : "continue", "cb" : "ctlArcadeCloseDlg"}]);
+        }
+
+    }).fail(function (jqXHR, textStatus) {
+        ctlArcadeCloseDlg(idLoading);
+        ctlArcadeShowDialog("Error!","There was an error during save score!",
+            [ { "txt" : "cancel", "cb" : "ctlArcadeCloseDlg"},
+                { "txt" : "retry", "cb" : "_ctlArcadeSaveScore"}]);
+    });
+
+    ctlDlgResize();
+}
+
+
+
+
+
+function ctlArcadeResumeGame(){
+    jQuery(".ctl-arcade-game-iframe")[0].contentWindow.ctlArcadeResume();
+}
+
+function ctlArcadeLoadIframe(){
+    jQuery(".ctl-arcade-game-iframe").attr("src",
+        jQuery(".ctl-arcade-game-iframe").attr("data-src") );
+
+}
+
+function ctlArcadeShowAdsPreloader( iMinTime, iMinTimeBetweenAds ){
+
+
+    var iTimeAds = new Date().getTime();
+
+    if(g_iTimeAds > 0 && iTimeAds - g_iTimeAds < (iMinTimeBetweenAds*1000)){
+        return;
+    }else{
+        g_iTimeAds = iTimeAds;
+    }
+
+    var szHtml = "";
+    var id = ctlArcadeMakeCode();
+    szHtml += "<div id='"+id+"' class='ctl-arcade-ads-dlg-wrapper'>";
+    szHtml += "<div class='ctl-arcade-dlg-block'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-content'>";
+    szHtml += "<div onclick='ctlArcadeLoadIframe();' class='ctl-arcade-dlg-close ctl-arcade-icon-cancel'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-ad'></div>";
+    szHtml += "<p>&nbsp;</p>";
+    szHtml += "</div>";
+    szHtml += "</div>";
+
+    jQuery(".ctl-arcade-game-iframe-wrapper").append(szHtml);
+
+
+    jQuery.ajax({
+        type: "POST",
+        url: g_szCtlArcadeAjax + "?action=ad_preloader_code", //Content Page
+        data: "" ,
+        type: "text",
+        beforeSend: function()
+        {
+
+        },
+        cache: false,
+        success: function(data)
+        {
+
+            jQuery("#"+id).find(".ctl-arcade-dlg-ad").append(data);
+            jQuery("#"+id).find(".ctl-arcade-dlg-content").css("display","block");
+
+            var f = function(){
+                var iTime = jQuery("#"+id).attr("data-time");
+
+                jQuery("#"+id).find("p").css("visibility","visible");
+                jQuery("#"+id).find("p").text("Your game will be shown in " + iTime + " seconds.");
+
+                iTime = parseInt(iTime)-1;
+
+                if( iTime == -1 ){
+                    clearInterval( jQuery("#"+id).attr("data-interval") );
+                    jQuery("#"+id).find(".ctl-arcade-dlg-close").css("visibility","visible");
+                    jQuery("#"+id).find("p").text("Continue.");
+                }else{
+                    jQuery("#"+id).attr("data-time",iTime);
+                }
+            };
+
+            jQuery("#"+id).attr("data-time", iMinTime );
+            jQuery("#"+id).attr("data-interval", setInterval(f, 1000) );
+
+            f();
+
+            ctlDlgResize();
+        }
+    });
+
+}
+
+function ctlArcadeShowAdsInterlevel( iMinTime, iMinTimeBetweenAds ){
+
+    var iTimeAds = new Date().getTime();
+
+    if(g_iTimeAds > 0 && iTimeAds - g_iTimeAds < (iMinTimeBetweenAds*1000)){
+        return;
+    }else{
+        g_iTimeAds = iTimeAds;
+    }
+
+    var szHtml = "";
+    var id = ctlArcadeMakeCode();
+    szHtml += "<div id='"+id+"' class='ctl-arcade-ads-dlg-wrapper'>";
+    szHtml += "<div class='ctl-arcade-dlg-block'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-content'>";
+    szHtml += "<div onclick='ctlArcadeResumeGame();' class='ctl-arcade-dlg-close ctl-arcade-icon-cancel'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-ad'></div>";
+    szHtml += "<p>&nbsp;</p>";
+    szHtml += "</div>";
+    szHtml += "</div>";
+
+    jQuery(".ctl-arcade-game-iframe-wrapper").append(szHtml);
+    jQuery(".ctl-arcade-game-iframe")[0].contentWindow.ctlArcadePause();
+    jQuery(".ctl-arcade-game-iframe-wrapper .ctl-arcade-dlg-ad").load( g_szCtlArcadeAjax + "?action=ad_interlevel_code", function( response, status, xhr ){
+
+        if ( status == "error" ) {
+            ctlArcadeResumeGame();
+            jQuery("#"+id).remove();
+        }else{
+            jQuery("#"+id).find(".ctl-arcade-dlg-content").css("display","block");
+
+            var f = function(){
+                var iTime = jQuery("#"+id).attr("data-time");
+
+                jQuery("#"+id).find("p").css("visibility","visible");
+                jQuery("#"+id).find("p").text("The game will be ready in " + iTime + " seconds.");
+
+                iTime = parseInt(iTime)-1;
+
+                if( iTime == -1 ){
+                    clearInterval( jQuery("#"+id).attr("data-interval") );
+                    jQuery("#"+id).find(".ctl-arcade-dlg-close").css("visibility","visible");
+                    jQuery("#"+id).find("p").text("Game Ready.");
+                }else{
+                    jQuery("#"+id).attr("data-time",iTime);
+                }
+            };
+
+            jQuery("#"+id).attr("data-time", iMinTime);
+            jQuery("#"+id).attr("data-interval", setInterval(f, 1000) );
+
+            ctlDlgResize();
+        }
+
+    });
+
+
+}
+
+function ctlArcadeShowDialog( szTitle, szMsg, aBtn, bFixed){
+    var szHtml = "";
+    var id = ctlArcadeMakeCode();
+
+    szHtml += "<div id='"+id+"' class='ctl-arcade-dlg-wrapper " + ( bFixed == true ? "ctl-fixed" : "") + "'>";
+        szHtml += "<div class='ctl-arcade-dlg-block'></div>";
+        szHtml += "<div class='ctl-arcade-dlg-content'>";
+            szHtml += "<h2>"+szTitle+"</h2>";
+            szHtml += "<p>"+szMsg+"</p>";
+            szHtml += "<div class='ctl-arcade-dlg-close ctl-arcade-icon-cancel'></div>";
+            szHtml += "<div class='ctl-arcade-dlg-footer'>";
+            if( aBtn && aBtn.length > 0 ){
+                for( var i=0; i < aBtn.length; i++){
+                    szHtml += "<div onclick='" + aBtn[i].cb +
+                              "(\""+id+"\");' class='ctl-arcade-btn ctl-arcade-btn-mini ctl-arcade-btn-"+ g_szCtlArcadeColor +"'>"+
+                              aBtn[i].txt+"</div>";
+                }
+            }
+            szHtml += "</div>";
+        szHtml += "</div>";
+    szHtml += "</div>";
+
+
+    if( bFixed == true ){
+        jQuery("body").append(szHtml);
+    }else{
+        jQuery(".ctl-arcade-game-iframe-wrapper").append(szHtml);
+    }
+
+    ctlDlgResize();
+
+    return id;
+}
+
+
+function ctlArcadeShareEvent( szTitle, szMsg, aBtn){
+    var szHtml = "";
+    var id = ctlArcadeMakeCode();
+    szHtml += "<div id='"+id+"' class='ctl-arcade-share-dlg-wrapper'>";
+    szHtml += "<div class='ctl-arcade-dlg-block'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-content'>";
+    szHtml += "<h2>"+szTitle+"</h2>";
+    szHtml += "<p>"+szMsg+"</p>";
+    szHtml += "<div class='ctl-arcade-dlg-close ctl-arcade-icon-cancel'></div>";
+    szHtml += "<div class='ctl-arcade-dlg-footer'>";
+    if( aBtn && aBtn.length > 0 ){
+        for( var i=0; i < aBtn.length; i++){
+
+            switch(aBtn[i].txt){
+                case "facebook":{
+                    szHtml += "<div onclick='" + aBtn[i].cb +
+                    "(\""+id+"\");' class='ctl-arcade-btn ctl-arcade-btn-mini ctl-arcade-icon-facebook ctl-arcade-btn-"+ g_szCtlArcadeColor +"'></div>";
+                }break;
+                case "twitter":{
+                    szHtml += "<div onclick='" + aBtn[i].cb +
+                    "(\""+id+"\");' class='ctl-arcade-btn ctl-arcade-btn-mini ctl-arcade-icon-twitter ctl-arcade-btn-"+ g_szCtlArcadeColor +"'></div>";
+                }break;
+            }
+        }
+    }
+    szHtml += "</div>";
+    szHtml += "</div>";
+    szHtml += "</div>";
+
+    jQuery(".ctl-arcade-game-iframe-wrapper").append(szHtml);
+
+    ctlDlgResize();
+
+    return id;
+}
+
+function ctlArcadeShareTwitter( szLink, szName, szDescription ){
+    var szTweetbegin = 'http://twitter.com/home?status=';
+    var szTweettxt = szDescription + " - " + szName + " " + szLink;
+    var szFinaltweet = szTweetbegin +encodeURIComponent(szTweettxt);
+    window.open(szFinaltweet,'_blank');
+}
+
+function ctlArcadeShareFacebook( szLink, szName, szCaption, szDescription, szPicture ){
+    FB.ui({
+        method: 'feed',
+        display : "popup",
+        link: szLink,
+        caption: szCaption,
+        description: szDescription,
+        name: szName,
+        picture : szPicture
+    }, function(response){
+
+    });
+}
+
+
+function ctlArcadeShowLoading(szMsg){
+    var szHtml = "";
+    var id = ctlArcadeMakeCode();
+    szHtml += "<div id='"+id+"' class='ctl-arcade-loading-dlg-wrapper'>";
+        szHtml += "<div class='ctl-arcade-dlg-block'></div>";
+        szHtml += "<div class='ctl-arcade-dlg-content'>";
+             szHtml += "<p>"+szMsg+"</p>";
+             szHtml += "<i class='animate-spin ctl-arcade-icon-arrows-cw'></i>";
+        szHtml += "</div>";
+    szHtml += "</div>";
+
+    jQuery(".ctl-arcade-game-iframe-wrapper").append(szHtml);
+
+    return id;
+}
+
+jQuery(window).ready(function(){
+    jQuery(document).on("click", ".ctl-arcade-dlg-wrapper .ctl-arcade-dlg-block", function(){
+        jQuery(this).closest(".ctl-arcade-dlg-wrapper").remove();
+    });
+    jQuery(document).on("click", ".ctl-arcade-dlg-wrapper .ctl-arcade-dlg-close", function(){
+        jQuery(this).closest(".ctl-arcade-dlg-wrapper").remove();
+    });
+
+
+    jQuery(document).on("click", ".ctl-arcade-share-dlg-wrapper .ctl-arcade-dlg-block", function(){
+        jQuery(this).closest(".ctl-arcade-share-dlg-wrapper").remove();
+    });
+    jQuery(document).on("click", ".ctl-arcade-share-dlg-wrapper .ctl-arcade-dlg-close", function(){
+        jQuery(this).closest(".ctl-arcade-share-dlg-wrapper").remove();
+    });
+    jQuery(document).on("click", ".ctl-arcade-ads-dlg-wrapper .ctl-arcade-dlg-close", function(){
+        jQuery(this).closest(".ctl-arcade-ads-dlg-wrapper").remove();
+    });
+});
+

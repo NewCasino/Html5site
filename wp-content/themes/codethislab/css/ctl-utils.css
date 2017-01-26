@@ -1,0 +1,78 @@
+.ctl-clear{
+    clear : both;
+}
+.ctl-table{
+    display : table;
+    width: 100%;
+}
+.ctl-row{
+    display : table-row;
+}
+.ctl-td{
+    display : table-cell;
+}
+.ctl-underlined{
+    text-decoration: underline;
+}
+
+.ctl-hidden{
+    display:none !important;
+}
+.ctl-visible{
+    display:block;
+}
+.ctl-right{
+    float: right;
+}
+.ctl-left{
+    float: left;
+}
+
+.ctl-full-width{
+    width: 100%;
+}
+
+.ctl-align-right{
+    text-align: right;
+}
+.ctl-align-left{
+    text-align: left;
+}
+.ctl-align-center{
+    text-align: center;
+}
+
+.ctl-inline{
+    display: inline;
+}
+
+.ctl-margin-left-none{
+    margin-left: 0px;
+}
+
+.ctl-noselect{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ctl-ani-hack{
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* mobile webkit */
+}
+
+.ctl-nopadding{
+    padding: 0px;
+}

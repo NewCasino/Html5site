@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                                            hero_accelleration:1.8, //HERO ACCELLERATION WHEN MOVING RIGHT/LEFT
+                                            hero_friction:0.9,      //HERO FRICTION WHEN CHANGE DIRECTION
+                                            max_hero_speed: 20,     //MAX HERO SPEED
+                                            time_occurence_falling_obj: 3000, //STARTING OCCURENCE OF ENEMIES IN MILLISECONDS
+                                            speed_enemy:5,          //STARTING ENEMY SPEED
+                                            max_speed_enemy: 10,    //MAX ENEMY SPEED
+                                            num_lives:3,            //PLAYER LIVES
+                                            speed_player_bullet: 30,//PLAYER BULLET SPEED
+                                            score_hit: 10,          //POINTS GAINED WHEN ENEMY IS DESTROYED
+                                            min_shot_occurence:1000,//MIN OCCURENCE FOR ENEMY SHOT
+                                            max_shot_occurence:2000 //MIN OCCURENCE FOR ENEMY SHOT
+                                           });
+                                           
+                                           
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("save_score", function(evt,iScore) {
+                             //alert("iScore: "+iScore);
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="768" height="1024"> </canvas>
+
+    </body>
+</html>

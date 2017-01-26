@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                                                hero_x : 150,             //STARTING HERO X POSITION
+                                                hero_y : CANVAS_HEIGHT/2, //STARTING HERO Y POSITION
+                                                hero_down_speed : 3,      //HERO FALLING SPEED
+                                                bg_speed : 9,             //SPEED OF SCROLLING BACKGROUND
+                                                time_training: 3000,      //NUMBER OF MILLISECONDS BEFORE USER STARTS PLAYING
+                                                dist_among_obst: 350,     //PIXEL DISTANCE AMONG TWO SERIES OF OBSTACLE
+                                                obst_height_dist: 250     //PIXEL DISTANCE BETWEEN TWO OBSTACLE POSITIONED IN THE SAME X
+                             
+                                            });
+
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("save_score", function(evt,score,best_score) {
+                             //alert("save_score: "+score);
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+        </script>
+        <canvas id="canvas" class='ani_hack' width="768" height="1024"> </canvas>
+
+    </body>
+</html>

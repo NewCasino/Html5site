@@ -1,0 +1,323 @@
+/**************APP****************/
+.msg_box_but{
+    font-size: 25px;
+    letter-spacing: 1px;
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#msg_box_title{
+    width: 480px;
+    top: 196px;
+    left: 158px;
+    
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 40px;
+    color: #000000;
+    text-shadow: 2px 0 0 #d7d5d2, -2px 0 0 #d7d5d2, 0 2px 0 #d7d5d2, 0 -2px 0 #d7d5d2, 2px 2px #d7d5d2, -2px -2px 0 #d7d5d2, 2px -2px 0 #d7d5d2, -2px 2px 0 #d7d5d2;
+    font-family: 'blackplotanregular';
+}
+
+#msg_box_text{
+    width: 480px;
+    top: 270px;
+    left: 158px;
+    
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 24px;
+    color: #000000;
+    text-shadow: 2px 0 0 #d7d5d2, -2px 0 0 #d7d5d2, 0 2px 0 #d7d5d2, 0 -2px 0 #d7d5d2, 2px 2px #d7d5d2, -2px -2px 0 #d7d5d2, 2px -2px 0 #d7d5d2, -2px 2px 0 #d7d5d2;
+    font-family: 'blackplotanregular';
+}
+
+#msg_box_button1{
+    width: 230px;
+    top: 400px;
+    left: 178px;
+}
+
+#msg_box_button2{
+    width: 230px;
+    top: 400px;
+    left: 268px;
+}
+
+#msg_box_button3{
+    width: 230px;
+    top: 400px;
+    left: 400px;
+}
+/**************MENU****************/
+
+.menu_button{
+    font-size: 56px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#button_menu_play{
+    top:380px; 
+    left:258px;
+}
+
+#button_menu_help{
+    top:480px; 
+    right:258px;
+}
+
+.layout_lock{
+     width: 46px;
+     height: 67px;
+     top: 56px;
+     left: 66px; 
+     display: none;
+}
+
+#arrow_button_left{
+    width: 66px;
+    height: 89px;
+    top: 424px;
+    left: 5px;
+}
+
+#arrow_button_right{
+    width: 66px;
+    height: 89px;
+    top: 424px;
+    left: 726px;
+}
+
+.mahjong_layout h1{
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: left;
+    font-size: 30px;
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+.mahjong_layout h2{
+    top: 185px;
+    left: -40px; 
+    width: 284px;
+    
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 32px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+.mahjong_layout h3{
+    top: 8px;
+    left: 34px; 
+    width: 140px;
+    
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 36px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+
+/**************HELP****************/
+
+#help_text1{
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    
+     font-family: 'blackplotanregular';
+}
+
+#help_text2{
+    font-size: 34px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    
+     font-family: 'blackplotanregular';
+}
+
+#help_button_exit{
+    font-size: 50px;
+    text-align: right;
+    letter-spacing: 2px;
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    
+     font-family: 'blackplotanregular';
+}
+
+/**************GAME****************/
+.game_button{
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#button_exit{
+    width: 24px;
+    height: 32px;
+    top: 2px;
+    left: 768px;
+}
+
+.game_text{
+    color: #d7d5d2;
+    text-shadow: 3px 0 0 #000000, -3px 0 0 #000000, 0 3px 0 #000000, 0 -3px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    
+     font-family: 'blackplotanregular';
+}
+
+
+/********INTERFACE**********/
+
+.bonus_score_anim{
+    width: 800px;
+    
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 22px;
+    color: #000000;
+    text-shadow: 2px 0 0 #d7d5d2, -2px 0 0 #d7d5d2, 0 2px 0 #d7d5d2, 0 -2px 0 #d7d5d2, 2px 2px #d7d5d2, -2px -2px 0 #d7d5d2, 2px -2px 0 #d7d5d2, -2px 2px 0 #d7d5d2;
+    font-family: 'blackplotanregular';
+}
+
+#text_score{
+    width: 175px;
+    
+    text-align: left;
+    font-size: 17px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#bonus_time{
+    width: 220px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 17px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#hint_text{
+    width: 320px;
+    
+    text-align: right;
+    font-size: 17px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#win_title{
+    width: 480px;
+    margin-top: 18px;
+    margin-left: 8px;
+    
+    text-align: center;
+    font-size: 36px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#win_final_score{
+    width: 480px;
+    
+    text-align: center;
+    font-size: 24px;
+    color: #FFF;
+
+    font-family: 'blackplotanregular';
+}
+
+#win_but_exit{
+    top: 238px;
+    left: 76px;
+}
+
+#win_but_shuffle{
+    top: 238px;
+    left: 320px;
+}
+
+#game_over_title{
+    width: 480px;
+    margin-top: 18px;
+    margin-left: 8px;
+    
+    text-align: center;
+    font-size: 30px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+#game_over_final_score{
+    width: 480px;
+    
+    text-align: center;
+    font-size: 24px;
+    color: #FFF;
+
+    font-family: 'blackplotanregular';
+}
+
+#game_over_but_exit{
+    top: 234px;
+    left: 200px;
+}
+
+#game_over_but_restart{
+    top: 210px;
+    left: 200px;
+}
+
+#game_over_but_shuffle{
+    top: 184px;
+    left: 200px;
+}
+
+.panel_button{
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #d7d5d2;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 2px 2px #000000, -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000;
+    font-family: 'blackplotanregular';
+}
+
+
+/***********************************************/
+
+/***************FONTS***************************/
+
+@font-face {
+    font-family: 'blackplotanregular';
+    src: url('fonts/blackplotan-webfont.eot');
+    src: url('fonts/blackplotan-webfont.eot?') format('embedded-opentype'),
+         url('fonts/blackplotan-webfont.woff') format('woff'),
+         url('fonts/blackplotan-webfont.ttf') format('truetype'),
+         url('fonts/blackplotan-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

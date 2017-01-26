@@ -1,0 +1,327 @@
+.ctl-behance-importer-media-button{
+    color:#1769ff;
+}
+
+.ctl-behance-importer-align-left{
+    text-align: left;
+}
+.ctl-behance-importer-align-center{
+    text-align: center;
+}
+.ctl-behance-importer-align-right{
+    text-align: right;
+}
+.ctl-behance-importer-hidden{
+    display: none;
+}
+
+/******* DIALOG ********/
+
+.ctl-behance-importer-dlg-wrapper,
+.ctl-behance-importer-loading-dlg-wrapper{
+    width: 100%;
+
+    display: block;
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    
+    overflow: hidden;  
+    z-index: 999999;
+}
+
+.ctl-behance-importer-loading-dlg-wrapper .ctl-behance-importer-dlg-content{
+    text-align: center;
+}
+
+.ctl-behance-importer-dlg-wrapper-work{
+    height: 80%;
+    width: 90%;
+    max-width: 700px;    
+    overflow: hidden;
+}
+
+.ctl-behance-importer-dlg-work-popup{
+    width: 90%;
+    max-width: 1000px;    
+    overflow: hidden;
+}
+
+.ctl-behance-importer-dlg-content-work{
+    overflow-y: scroll;
+
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.ctl-behance-importer-dlg-content-work p{
+    background-color: transparent;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.ctl-behance-importer-loading-dlg-wrapper .ctl-behance-importer-icon-arrows-cw{
+    margin-top: 30px;
+    display: block;
+}
+
+.ctl-behance-importer-dlg-block{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    opacity: 0.5;
+
+    cursor: pointer;
+}
+
+.ctl-behance-importer-loading-dlg-wrapper .ctl-behance-importer-dlg-block{
+    cursor: auto;
+}
+
+.ctl-behance-importer-loading-btn-container{
+    margin-top: 15px;
+}
+
+.ctl-behance-importer-dlg-content{
+    position: absolute;
+    margin: 0px auto;
+
+    display: block;
+
+    top: 150%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    background-color: #fff;
+
+    padding: 15px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    min-width: 200px;
+    min-height: 100px;
+
+
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.ctl-behance-importer-dlg-content-loading p{ 
+    margin: 0px;
+
+    font-size: 14px;
+    line-height: 14px;
+
+    background-color: #efefef;
+    padding: 10px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.ctl-behance-importer-dlg-title{
+    margin: 0px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.ctl-behance-importer-dlg-close{
+    position: absolute;
+
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.ctl-behance-importer-dlg-close i{
+    
+}
+
+.ctl-behance-importer-dlg-close:hover{
+    color: #666;
+    top: 1px;
+}
+
+.ctl-behance-importer-dlg-content h2{
+    font-size: 20px !important;
+    margin-bottom: 16px !important;
+    margin-top: 5px !important;
+
+    padding: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+.ctl-behance-importer-loading-dlg-wrapper p{
+    margin: 0px;
+
+    font-size: 14px;
+    line-height: 14px;
+
+    background-color: #efefef;
+    padding: 10px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.ctl-behance-importer-dlg-footer{
+    margin-top: 10px;
+    text-align: right;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.ctl-behance-importer-dlg-content-work{
+    text-align: left;
+}
+
+.ctl-behance-importer-dlg-content-work h1{
+    margin-bottom: 15px;    
+}
+
+.ctl-behance-importer-dlg-content-work a{
+    word-wrap: break-word;
+}
+
+.ctl-behance-importer-dlg-wrapper .ctl-behance-importer-dlg-block{
+    opacity: 0;
+}
+
+.ctl-behance-importer-dlg-block-show{
+    opacity: 0.5!important;
+}
+
+.ctl-behance-importer-dlg-content-show{
+    top: 50% !important;
+}
+
+.ctl-behance-importer-dlg-content,
+.ctl-behance-importer-dlg-block{
+    -moz-transition: all 0.4s ease 0s;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;  
+}
+
+.rwd-video {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+}
+.rwd-video iframe,
+.rwd-video object,
+.rwd-video embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.ctl-behance-importer-fixed-body{
+    overflow: hidden;
+}
+
+.ctl-behance-importer-dlg-content-left{
+    float: left;
+    width: 30%;
+    padding-right: 5px;    
+    box-sizing: border-box;
+}
+
+.ctl-behance-importer-dlg-content-left img{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.ctl-behance-importer-dlg-content-right{
+    float: right;
+    width: 70%;
+    box-sizing: border-box;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+.ctl-behance-importer-dlg-content-work-tags,
+.ctl-behance-importer-dlg-content-work-fields{
+    list-style: none;
+    margin: 0px;
+    text-align: left;
+}
+
+.ctl-behance-importer-dlg-content-work-fields{
+    margin-bottom: 15px;
+}
+
+.ctl-behance-importer-dlg-content-work-tags li,
+.ctl-behance-importer-dlg-content-work-fields li{
+    display: inline-block;
+}
+
+.ctl-behance-importer-dlg-content-work-fields li{
+    font-size: 18px;
+    padding-right: 10px; 
+    font-style: italic;
+}
+
+.ctl-behance-importer-dlg-content-work-tags li{
+    font-size: 14px;    
+    padding: 5px;  
+    margin-right: 5px;
+    margin-bottom: 5px;    
+    background-color: #f00;
+    color: #fff;
+    text-shadow: 0px 0px 2px #000;   
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    font-weight:bold;
+}
+
+.ctl-behance-importer-dlg-content-work-tags{
+    margin-top: 15px;
+}
+
+.ctl-behance-importer-dlg-wrapper-full-content img{
+    width: 100%;
+}
+
+@media (max-width: 768px){
+    .ctl-behance-importer-dlg-content-left,
+    .ctl-behance-importer-dlg-content-right{
+        width: 100%;
+    }  
+    
+    .ctl-behance-importer-dlg-content-left{
+       margin-bottom: 15px;
+    }
+}
+

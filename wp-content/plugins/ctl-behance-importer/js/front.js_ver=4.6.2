@@ -1,0 +1,151 @@
+
+jQuery(window).ready(function(){
+    ctlBehanceImporterResizeGallery();
+    ctlBehanceImporterInitGallery();
+});
+
+jQuery(window).resize(function() {
+    ctlBehanceImporterResizeGallery();
+});
+
+function ctlBehanceImporterInitGallery(){
+
+    if( jQuery(".ctl-behance-importer-gallery-layout").attr("data-open-work") === "1" ){
+        jQuery(".ctl-behance-importer-gallery-item-container").each(function(){
+            var idBehance   = jQuery(this).attr("data-behance-id");
+            var szTitle     = jQuery(this).attr("data-behance-title");
+            var oNodeAnchor = jQuery(this).find("a");
+            var iPopupMode  = parseInt(jQuery(this).parents(".ctl-behance-importer-gallery-layout").attr("data-popup-mode"));
+            var szItemHoverColor = jQuery(this).parents(".ctl-behance-importer-gallery-layout").attr("data-item-hover-color");
+
+            var szExecuteMethod = "";
+
+            if( iPopupMode === 0){
+                szExecuteMethod = "get-popup-work";
+            }else{
+                szExecuteMethod = "get-work-html";
+            }
+
+            if( oNodeAnchor.attr("href") === "#" ){
+                oNodeAnchor.on("click", function(e){
+
+                e.preventDefault();  
+
+                var idBlock = ctlBehanceImporterShowBlockPanel();
+
+                jQuery.post(
+                    g_oBehanceImporterLocalization["ajaxurl"],
+                    {
+                        'action': 'ctl-behance-importer',
+                        'execute': szExecuteMethod,
+                        'id_behance' : idBehance
+                    }).done( function(response){
+                        
+                        ctlBehanceImporterCloseDlg(idBlock);
+                        
+                        console.log("iPopupMode: " + iPopupMode );
+                        
+                        if( iPopupMode === 0 ){
+                            var json_obj = JSON.parse(response);
+                            ctlBehanceImporterShowPopupWork(json_obj.title,
+                                                            json_obj.description,
+                                                            json_obj.cover,
+                                                            json_obj.fields,
+                                                            json_obj.tags,
+                                                            szItemHoverColor);   
+                        }else{
+                            ctlBehanceImporterShowWork(szTitle,response);   
+                        }
+                    }
+                ).fail( function(){
+                alert(g_oBehanceImporterLocalization["Ooops! Something Went Wrong"]);
+            });
+                });
+            }               
+        });
+    }else{
+        jQuery(document).on("click",".ctl-behance-importer-gallery-item-container a", function(e){
+            e.preventDefault();  
+        });
+    }
+}
+    
+function _ctlBehanceImporterResizeGallerySmall(){
+    var iLayoutWidth = jQuery(".ctl-behance-importer-gallery-layout").width();
+    var iGalleryItemWidth = 100;
+    
+    if( iLayoutWidth > 1200 ){
+        iGalleryItemWidth = 100 / 6;
+    }else if( iLayoutWidth > 992 ){
+        iGalleryItemWidth = 100 / 6;
+    }else if( iLayoutWidth > 768 ){
+        iGalleryItemWidth = 100 / 5;
+    }else if( iLayoutWidth > 600 ){
+        iGalleryItemWidth = 100 / 4;
+    }else if( iLayoutWidth > 500 ){
+        iGalleryItemWidth = 100 / 2;
+    }else{
+        iGalleryItemWidth = 100;
+    }
+      
+    return iGalleryItemWidth;
+}
+
+function _ctlBehanceImporterResizeGalleryMedium(){
+    var iLayoutWidth = jQuery(".ctl-behance-importer-gallery-layout").width();
+    var iGalleryItemWidth = 100;
+    
+    if( iLayoutWidth > 1200 ){
+        iGalleryItemWidth = 100 / 6;
+    }else if( iLayoutWidth > 992 ){
+        iGalleryItemWidth = 100 / 4;
+    }else if( iLayoutWidth > 768 ){
+        iGalleryItemWidth = 100 / 3;
+    }else if( iLayoutWidth > 600 ){
+        iGalleryItemWidth = 100 / 2;
+    }else{
+        iGalleryItemWidth = 100;
+    }
+      
+    return iGalleryItemWidth;
+}
+
+function _ctlBehanceImporterResizeGalleryBig(){
+    var iLayoutWidth = jQuery(".ctl-behance-importer-gallery-layout").width();
+    var iGalleryItemWidth = 100;
+    
+    if( iLayoutWidth > 1200 ){
+        iGalleryItemWidth = 100 / 4;
+    }else if( iLayoutWidth > 992 ){
+        iGalleryItemWidth = 100 / 4;
+    }else if( iLayoutWidth > 768 ){
+        iGalleryItemWidth = 100 / 3;
+    }else if( iLayoutWidth > 600 ){
+        iGalleryItemWidth = 100 / 2;
+    }else{
+        iGalleryItemWidth = 100;
+    }
+      
+    return iGalleryItemWidth;
+}
+
+function ctlBehanceImporterResizeGallery(){
+    var iSize = parseInt(jQuery(".ctl-behance-importer-gallery-layout").attr("data-size"));
+    var iGalleryItemWidth;
+
+    switch(iSize){
+        case 0:{
+             iGalleryItemWidth = _ctlBehanceImporterResizeGallerySmall();   
+        }break;
+        case 1:{
+             iGalleryItemWidth = _ctlBehanceImporterResizeGalleryMedium();    
+        }break;
+        case 2:{
+             iGalleryItemWidth = _ctlBehanceImporterResizeGalleryBig();    
+        }break;    
+    }
+
+    jQuery(".ctl-behance-importer-gallery-wrapper").css("width",iGalleryItemWidth+"%");    
+}
+
+
